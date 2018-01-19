@@ -10,6 +10,15 @@ class RemoteClient(svn.common.CommonClient):
             svn.constants.LT_URL,
             *args, **kwargs)
 
+
+    def mkdir(self, message, dir_name):
+        cmd = []
+        cmd += ['-m', message] + dir_name
+
+        self.run_command(
+            'mkdir',
+            cmd)
+
     def checkout(self, path, revision=None):
         cmd = []
         if revision is not None:
